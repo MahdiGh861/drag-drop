@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تخت کار Kanban - Drag & Drop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📋 تخت کار Kanban</h1>
+
+      <div class="board" id="board">
+        <!-- ستون اول -->
+        <div class="column" data-status="todo">
+          <div class="column-title">🔴 باید انجام شود</div>
+          <div class="tasks-container" id="todo-tasks">
+            <div class="task" draggable="true">
+              <div class="task-title">طراحی صفحه اصلی</div>
+              <div class="task-description">طراحی UI برای صفحه اصلی</div>
+              <div class="task-priority priority-high">اولویت بالا</div>
+              <button class="delete-btn" onclick="deleteTask(this)">حذف</button>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <button class="add-task-btn" onclick="showAddTaskModal('todo')">
+            + افزودن تسک
+          </button>
+        </div>
+
+        <!-- ستون دوم -->
+        <div class="column" data-status="inprogress">
+          <div class="column-title">🔵 در حال انجام</div>
+          <div class="tasks-container" id="inprogress-tasks">
+            <div class="task" draggable="true">
+              <div class="task-title">توسعه بک‌اند</div>
+              <div class="task-description">ایجاد API های ضروری</div>
+              <div class="task-priority priority-medium">اولویت متوسط</div>
+              <button class="delete-btn" onclick="deleteTask(this)">حذف</button>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <button class="add-task-btn" onclick="showAddTaskModal('inprogress')">
+            + افزودن تسک
+          </button>
+        </div>
+
+        <!-- ستون سوم -->
+        <div class="column" data-status="done">
+          <div class="column-title">🟢 انجام شده</div>
+          <div class="tasks-container" id="done-tasks">
+            <div class="task" draggable="true">
+              <div class="task-title">تست اولیه</div>
+              <div class="task-description">تست کردن توابع اساسی</div>
+              <div class="task-priority priority-low">اولویت پایین</div>
+              <button class="delete-btn" onclick="deleteTask(this)">حذف</button>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <button class="add-task-btn" onclick="showAddTaskModal('done')">
+            + افزودن تسک
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal برای افزودن تسک -->
+    <div class="input-modal" id="addTaskModal">
+      <div class="modal-content">
+        <h2>افزودن تسک جدید</h2>
+        <div class="form-group">
+          <label for="taskTitle">عنوان تسک</label>
+          <input type="text" id="taskTitle" placeholder="عنوان را وارد کنید" />
+        </div>
+        <div class="form-group">
+          <label for="taskDesc">توضیحات</label>
+          <textarea id="taskDesc" placeholder="توضیحات را وارد کنید"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="taskPriority">اولویت</label>
+          <select id="taskPriority">
+            <option value="low">اولویت پایین</option>
+            <option value="medium">اولویت متوسط</option>
+            <option value="high">اولویت بالا</option>
+          </select>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-cancel" onclick="closeAddTaskModal()">
+            لغو
+          </button>
+          <button class="btn btn-submit" onclick="addTask()">افزودن</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
